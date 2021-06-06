@@ -17,9 +17,16 @@ function computerPlay() {
   return result;
 }
 
+function cancelGame() {
+  console.log("Game canceled");
+  throw new Error("Game Over");
+}
+
 function playerPlay() {
   let playerSelection = prompt("Type rock, paper or scissors", "");
-  if (
+  if (!playerSelection) {
+    cancelGame();
+  } else if (
     playerSelection.toLowerCase() == "rock" ||
     playerSelection.toLowerCase() == "paper" ||
     playerSelection.toLowerCase() == "scissors"
@@ -40,12 +47,15 @@ function playRound(playerSelection, computerSelection) {
     switch (currentPlayerSelection) {
       case "rock":
         result = "Rock vs rock. Tie!";
+        console.log(result);
         break;
       case "paper":
         result = "You win! Paper beats Rock";
+        console.log(result);
         break;
       case "scissors":
         result = "You lose... Rock beats scissors";
+        console.log(result);
         break;
       default:
         break;
@@ -54,12 +64,15 @@ function playRound(playerSelection, computerSelection) {
     switch (currentPlayerSelection) {
       case "rock":
         result = "You lose... Paper beats rock";
+        console.log(result);
         break;
       case "paper":
         result = "Paper vs paper. Tie!";
+        console.log(result);
         break;
       case "scissors":
         result = "You win! Scissors beats paper";
+        console.log(result);
         break;
       default:
         break;
@@ -68,12 +81,15 @@ function playRound(playerSelection, computerSelection) {
     switch (currentPlayerSelection) {
       case "rock":
         result = "You win! Rock beats scissors";
+        console.log(result);
         break;
       case "paper":
         result = "You lose... Scissors beats paper";
+        console.log(result);
         break;
       case "scissors":
         result = "Scissors vs scissors. Tie!";
+        console.log(result);
         break;
       default:
         break;
@@ -95,13 +111,10 @@ function game() {
 
     if (roundResult.includes(win)) {
       userScore += 1;
-      console.log("You win!");
     } else if (roundResult.includes(lose)) {
       compScore += 1;
-      console.log("You lose (");
     } else {
       ties += 1;
-      console.log("It's a tie!");
     }
   }
 
