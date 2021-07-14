@@ -23,19 +23,19 @@ function cancelGame() {
 }
 
 function playerPlay() {
-  let playerSelection = prompt("Type rock, paper or scissors", "");
-  if (!playerSelection) {
-    cancelGame();
-  } else if (
-    playerSelection.toLowerCase() == "rock" ||
-    playerSelection.toLowerCase() == "paper" ||
-    playerSelection.toLowerCase() == "scissors"
-  ) {
-    console.log(playerSelection);
-    return playerSelection;
-  } else {
-    alert("Wrong input! Enter again ");
-    playerPlay();
+  while (true) {
+    let playerSelection = prompt("Type rock, paper or scissors.");
+    if (!playerSelection) {
+      cancelGame();
+    } else if (
+      playerSelection.toLowerCase() == "rock" ||
+      playerSelection.toLowerCase() == "paper" ||
+      playerSelection.toLowerCase() == "scissors"
+    ) {
+      return playerSelection;
+    } else {
+      alert("You typed wrong word, try again.");
+    }
   }
 }
 
@@ -99,19 +99,12 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-  let userScore = 0;
-  let compScore = 0;
-  let ties = 0;
-
-  let win = "win";
-  let lose = "lose";
-
   for (let i = 0; i < 5; i++) {
     let roundResult = playRound(playerPlay(), computerPlay()).toLowerCase();
 
-    if (roundResult.includes(win)) {
+    if (roundResult.includes("win")) {
       userScore += 1;
-    } else if (roundResult.includes(lose)) {
+    } else if (roundResult.includes("lose")) {
       compScore += 1;
     } else {
       ties += 1;
@@ -133,7 +126,8 @@ function game() {
   }
 }
 
-// const computerSelection = computerPlay();
-// const playerSelection = "rock";
+let userScore = 0;
+let compScore = 0;
+let ties = 0;
 
 game();
